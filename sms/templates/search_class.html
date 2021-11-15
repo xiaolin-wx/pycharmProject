@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索信息</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/class_load.css">
+</head>
+<body>
+<header>
+    <ul align="center">
+        <img src="/static/img/head.png" id="head" height="50px" width="50px">
+        <li><a href="{% url 'stuMng:stuMngload' %}">首页</a></li>
+        <li><a href="{% url 'stuMng:add_class' %}">班级</a></li>
+        <li><a href="{% url 'stuMng:add_stu' %}">学生</a></li>
+        <li><a href="#">成绩</a></li>
+        <li><a href="{% url 'stuMng:login' %}">退出</a></li>
+    </ul>
+</header>
+<div class="context">
+    <div id="choose">
+        <ul>
+            <li style="line-height:5"><a href="{% url 'stuMng:check_class' %}">班级管理</a></li>
+            <li><a href="{% url 'stuMng:add_class' %}">添加班级</a></li>
+        </ul>
+        <div id="forms">
+            <nav>班级管理
+                <form action="{% url 'stuMng:search_class' %}" method="post" id="find">
+                     <input type="text" name="classname"/>
+                     <button type="submit" id="buttons">搜索</button>
+                </form>
+            </nav>
+            <div id="imfor">
+                <table border="1" class="mations"  >
+                <thead>
+                    <tr>
+                        <th>班级编号</th>
+                        <th>班级名称</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+            <tbody>
+                <tr>
+                    <td>{{ class_list.id }}</td>
+                    <td>{{ class_list.name }}</td>
+                    <td>
+                        <a href="/stuMng/edit_class/?id={{ class_list.id }}">修改</a>
+                        <a href="/stuMng/delete_class/?id={{ class_list.id }}">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <ul>
+        <li>制作人：linwenxin</li>
+        <li>| 联系方式：1376678161@qq.com</li>
+    </ul>
+</footer>
+</body>
+</html>

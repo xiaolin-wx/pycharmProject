@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生管理系统</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/stuMng.css">
+</head>
+<body>
+<header>
+    <ul align="center">
+        <img src="/static/img/head.png" id="head" height="50px" width="50px">
+        <li><a href="{% url 'stuMng:stuMngload' %}">首页</a></li>
+        <li><a href="{% url 'stuMng:class_load' %}">班级</a></li>
+        <li><a href="{% url 'stuMng:stu_load' %}">学生</a></li>
+        <li><a href="#">成绩</a></li>
+        <li><a href="{% url 'stuMng:login' %}">退出</a></li>
+    </ul>
+</header>
+<div class="photo">
+</div>
+<footer>
+    <ul>
+        <li>制作人：linwenxin</li>
+        <li>| 联系方式：1376678161@qq.com</li>
+    </ul>
+</footer>
+</body>
+</html>

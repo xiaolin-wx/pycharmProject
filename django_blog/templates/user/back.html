@@ -1,0 +1,263 @@
+{% extends 'template_base/base.html' %}
+
+{% block title %}
+    课程软件库
+{% endblock %}
+
+{% block content %}
+    <div id="software">
+    <div id="Java">
+        <h2>Java(点击图标进行下载)</h2>
+        <ul>
+        <a class="ware" href="https://lecloud.lenovo.com/share/3sd4nEs1zrJ5Jtwfs"><img src="/media/up_load/eclipse.jpg" style="width: 100px; height: 100px; border-radius: 50%;"</br>（密码：nwws）</a>
+        <a class="ware" href="https://lecloud.lenovo.com/share/4hVc8NxZKtkZqfmC8"><img src="/media/up_load/JDK.jpg" style="width: 100px; height: 100px;border-radius: 50%;">（密码：yqtw）</a>
+
+        </ul>
+    </div>
+    <div id="Python">
+        <h2>Python(点击图标进行下载)</h2>
+        <ul>
+        <a class="ware" href="https://lecloud.lenovo.com/share/8zLFxwzMJXGCfHis"><img src="/media/up_load/pycharm.jpg" style="width: 100px; height: 100px;border-radius: 50%;">（密码：jazq）</a>
+        <a class="ware"  href="https://lecloud.lenovo.com/share/57ACtGPJCtRBmVMzS"><img src="/media/up_load/pythonamd.jpg" style="width: 100px; height: 100px;border-radius: 50%;">（密码：zvky）</a>
+        <a class="ware"  href="https://lecloud.lenovo.com/share/2eashFStuTK8cXSYr"><img src="/media/up_load/anaconda.jpg" style="width: 100px; height: 100px;border-radius: 50%;">（密码：f49d）</a>
+        </ul>
+    </div>
+    <div id="mysql">
+        <h2>数据库(点击图标进行下载)</h2>
+        <ul>
+        <a class="ware"  href="https://lecloud.lenovo.com/share/49EMugkNH3gmtN79P"><img src="/media/up_load/mysql.jpg" style="width: 100px; height: 100px;border-radius: 50%;">（密码：awq8）</a>
+        <a class="ware"  href="https://lecloud.lenovo.com/share/2dMkFsbndeee5YPhu"><img src="/media/up_load/navicat.jpg"style="width: 100px; height: 100px;border-radius: 50%;">（密码：rga7）</a>
+        </ul>
+    </div>
+    <div id="web">
+        <h2>web前端开发(点击图标进行下载)</h2>
+        <ul>
+        <a class="ware"  href="https://lecloud.lenovo.com/share/4DsS1yoWu7bBGFHLv"><img src="/media/up_load/viscode.png"style="width: 100px; height: 100px;border-radius: 50%;">（密码：thnv）</a>
+        <a class="ware"  href="https://lecloud.lenovo.com/share/4FncXeSMN2pmPRi95"><img src="/media/up_load/Hbuilder.jpg"style="width: 100px; height: 100px;border-radius: 50%;">（密码：am5p）</a>
+        </ul>
+    </div>
+    <div id="ps">
+        <h2>PS(点击图标进行下载)</h2>
+        <ul>
+        <a class="ware"  href="https://lecloud.lenovo.com/share/3cwKNpR8ktLxwCSYR"><img src="/media/up_load/PS.jpg"style="width: 100px; height: 100px;border-radius: 50%;">（密码：78wa）</a>
+        </ul>
+    </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="/static/js/token.js"></script>
+    <script src="/static/other/editor.md/editormd.min.js"></script>
+    <script src="/static/other/editor.md/plugins/image-dialog/image-dialog.js"></script>
+    <script>
+        $('.editormd-preview').attr('background', 'width:533.375px !important;top:78px !important')
+        $(function () {
+            var editor = editormd("editor", {
+                height: 400,
+                path: '/static/other/editor.md/lib/',
+                syncScrolling: "single",
+                saveHTMLToTextarea: true,
+                imageUpload: true,
+                imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                imageUploadURL: '/upload_img/',
+            });
+            $('#publish-article').click(function () {
+                let title = $('#article-title').val()
+                let category = $("#choose_category").val()
+                let head_img = $('#head_img')[0].files[0]
+                let mark_doc = editor.getMarkdown();
+                let html_doc = editor.getHTML();
+                let tags = $('#tag').val()
+                var formdata = new FormData()
+                formdata.append('title', title)
+                formdata.append('category', category)
+                formdata.append('head_img', head_img)
+                formdata.append('mark_doc', mark_doc)
+                formdata.append('html_doc', html_doc)
+                formdata.append('tags', tags)
+                $.ajax({
+                    url: '/add_article/',
+                    method: 'post',
+                    processData: false,
+                    contentType: false,
+                    data: formdata,
+                    success: function (data) {
+                        if (data.code === 100) {
+                            swal({
+                                title: data.msg,
+                                text: '正在为您刷新页面！'
+                            })
+                            setTimeout(function () {
+                                location.reload()
+                            }, 1500)
+                        }
+
+                    }
+                })
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            bsCustomFileInput.init()
+        })
+    </script>
+    <script src="/static/js/bs-custom-file-input.js"></script>
+    <script>
+        $('.delete-target').click(function () {
+            let url = $(this).attr('url1')
+            let name1 = $(this).attr('name1')
+            swal({
+                    title: "确认删除?",
+                    text: "确认删除" + name1 + "？",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "直接删!",
+                    cancelButtonText: "让我想想!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            url: '/delete/' + url,
+                            method: 'post',
+                            data: {
+                                csrfmiddlewaretoken: '{{ csrf_token }}'
+                            },
+                            success: function (data) {
+                                if (data.code === 100) {
+                                    swal("删除成功!", "即将为您刷新页面", "success")
+                                    setTimeout(function () {
+                                        location.href = '/backend/'
+                                    }, 1500)
+                                }
+                            }
+                        })
+                    } else {
+                        swal({
+                            title: "取消成功！",
+                            type: "info",
+                        });
+                    }
+                });
+        })
+
+        $('.add_target').click(function () {
+            let myName = $(this).parent().prev().children('input').val()
+            let myUrl = $(this).attr('mine')
+            if (myName === '') {
+                swal({
+                    title: '请填写要添加的' + myName + '名称'
+                })
+            } else {
+                $.ajax({
+                    url: '/add/' + myUrl,
+                    method: 'post',
+                    data: {
+                        'name': myName,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    },
+                    success: function (data) {
+                        if (data.code === 100) {
+                            swal({
+                                    title: data.msg,
+                                    text: '是否继续添加？',
+                                    showCancelButton: true,
+                                    confirmButtonClass: 'btn btn-outline-primary',
+                                    confirmButtonText: '继续添加',
+                                    cancelButtonClass: 'btn btn-outline-danger',
+                                    cancelButtonText: '刷新页面',
+                                    closeOnConfirm: true,
+                                    closeOnCancel: false
+                                },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        $('.add_name').val('')
+                                    } else {
+                                        location.reload()
+                                    }
+                                }
+                            )
+                        } else {
+                            swal({
+                                title: data.msg,
+                            })
+                            $('.add_name').val('')
+                        }
+                    }
+                })
+            }
+        })
+
+    </script>
+    <script>
+        $('.update_category').click(function () {
+            let uid = $(this).attr('value5')
+            let type1 = $(this).attr('type1')
+            let newCategory = $(this).parent().prev().children().children('input').val()
+            $.ajax({
+                url: '/update/' + type1 + uid,
+                method: 'post',
+                data: {
+                    'name': newCategory,
+                },
+                success: function (data) {
+                    if (data.code === 100) {
+                        swal({
+                            title: data.msg,
+                            text: '正在为您刷新界面'
+                        })
+                        setTimeout(function () {
+                            location.reload()
+                        }, 1000)
+                    } else {
+                        swal({
+                            title: data.msg,
+                        })
+                        $('.update_category').parent().prev().children().children('input').val('')
+                    }
+                }
+            })
+        })
+        $('.update_tag').click(function () {
+            let uid = $(this).attr('value6')
+            let type1 = $(this).attr('type2')
+            let newTag = $(this).parent().prev().children().children('input').val()
+            $.ajax({
+                url: '/update/' + type1 + uid,
+                method: 'post',
+                data: {
+                    'name': newTag,
+                },
+                success: function (data) {
+                    if (data.code === 100) {
+                        swal({
+                            title: data.msg,
+                            text: '正在为您刷新界面'
+                        })
+                        setTimeout(function () {
+                            location.reload()
+                        }, 1000)
+                    } else {
+                        swal({
+                            title: data.msg,
+                        })
+                        $('.update_category').parent().prev().children().children('input').val('')
+                    }
+                }
+            })
+        })
+    </script>
+    <script>
+        $('.left-tag').click(function () {
+            if ($('.left-tag').hasClass('active')) {
+                $(this).children('span').removeClass('badge-primary').addClass('badge-light')
+            } else {
+                $('.left-tag').children('span').removeClass('badge-light').addClass('badge-primary')
+            }
+        })
+        $('.modal-article').attr('style', 'max-width: 1200px !important;')
+    </script>
+{% endblock %}

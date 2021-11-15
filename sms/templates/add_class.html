@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加班级</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/class_load.css">
+</head>
+<body>
+<header>
+    <ul align="center">
+        <img src="/static/img/head.png" id="head" height="50px" width="50px">
+        <li><a href="{% url 'stuMng:stuMngload' %}">首页</a></li>
+        <li><a href="{% url 'stuMng:add_class' %}">班级</a></li>
+        <li><a href="{% url 'stuMng:add_stu' %}">学生</a></li>
+        <li><a href="#">成绩</a></li>
+        <li><a href="{% url 'stuMng:login' %}">退出</a></li>
+    </ul>
+</header>
+<div class="context">
+    <div id="choose">
+        <ul>
+            <li style="line-height:5"><a href="{% url 'stuMng:check_class' %}">班级管理</a></li>
+            <li><a href="{% url 'stuMng:add_class' %}">添加班级</a></li>
+        </ul>
+        <div id="forms">
+            <nav>添加班级</nav>
+            <div id="imfor">
+               <form action="" method="post">
+                    {% csrf_token %}
+                    <p id="classname">班级名称
+                     <input type="text" name="classname" id="put"/>
+                        <button type="submit" id="buttons">添加</button>
+                   </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <ul>
+        <li>制作人：linwenxin</li>
+        <li>| 联系方式：1376678161@qq.com</li>
+    </ul>
+</footer>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block content %}
+<p>Add a new topic:</p>
+<form action="{% url 'learning_logs:new_topic' %}" method="post"> {#定义了一个表单#}
+    {% csrf_token %}  {# 防止攻击者利用表单来获取对服务器未经授权的访问#}
+    {{ form.as_p }}
+    <button name="submit">add topic</button>
+</form>
+
+{% endblock content %}
+</body>
+</html>

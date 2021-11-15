@@ -1,0 +1,156 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+header{
+    width: 100%;
+    color: white;
+    background-color: #343232;
+}
+
+header #head{
+    border-radius: 50px;
+    border: 2px solid white;
+    margin-top: 8px;
+    transition: transform 1.8s;
+}
+
+header #head:hover {
+    transform: rotate(360deg);
+    box-shadow:2px 3px rgba(1, 1, 1, 0.6);
+}
+
+header ul{
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+header li{
+    height: 70px;
+    line-height: 70px;
+    color: white;
+    margin-left:80px ;
+}
+
+.context{
+    width: 100%;
+    height: 82.7vh;
+    padding: 0;
+    background-color: #211f1f;
+    position: relative;
+}
+
+footer{
+    width: 100%;
+    height: 55px;
+    background-color: #343232;
+    color: white;
+}
+
+
+footer ul{
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+footer li{
+    height: 55px;
+    line-height: 55px;
+    color: white;
+    margin-left:30px ;
+    font-size: 8px;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+#choose{
+    position: absolute;
+    top: 40px;
+    left: 50px;
+}
+
+#forms{
+    width: 800px;
+    height: 42vh;
+    position: absolute;
+    left: 480px;
+    top: 55px;
+    border-radius: 10px;
+}
+
+nav{
+    color: white;
+    font-size: 23px;
+    background-color: darkgrey;
+    width: 800px;
+    height: 42px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+#imfor{
+    width: 800px;
+    min-height: 240px;
+    border-radius:0px 0px 10px 10px ;
+    background-color: #c8d6e5;
+    overflow: auto;
+    position: relative;
+}
+
+#buttons{
+    margin-left: 18px;
+    border-radius: 5px;
+}
+
+#put{
+    margin-left: 50px;
+    border-radius: 5px;
+    margin-top: 40px;
+}
+
+#classname{
+    margin-left: 20px;
+}
+
+.mations{
+    width: 790px;
+    position: absolute;
+    margin-top: 3px;
+    margin-left: 3px;
+}
+
+.mations thead th{
+    background-color: rgb(81,130,187);
+    color: #FFFFFF;
+    border-bottom-width: 0;
+}
+
+.mations{
+    color: #000;
+}
+
+.mations tr,.mations th{
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(81,130,187);
+}
+
+.mations td,.mations th{
+    padding: 5px 10px;
+    font-size: 12px;
+    font-family: Verdana;
+    font-weight: bold;
+}
+
+#find{
+    margin-top: -28px;
+    margin-left: 150px;
+}

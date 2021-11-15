@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/djangoProject" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/picFind" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/银行卡识别答辩end/bandCard_ebf" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/银行卡识别答辩end/bandCard_end" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/银行卡识别答辩end/picFind_end" vcs="Git" />
+  </component>
+</project>

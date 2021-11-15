@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>
+    <a href="{% url 'learning_logs:index' %}" >Learning Log</a>
+    <a href="{% url 'learning_logs:topics' %}">Topics</a>
+</p>{#    learning_logs是一个命名空间 而index是该命名空间中一个名称独特的URL模式#}
+
+{% block content %}
+
+{% endblock content %}  {#{%%}——模板标签#}
+</body>
+</html>

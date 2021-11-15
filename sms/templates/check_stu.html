@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生管理</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/class_load.css">
+</head>
+<body>
+<header>
+    <ul align="center">
+        <img src="/static/img/head.png" id="head" height="50px" width="50px">
+        <li><a href="{% url 'stuMng:stuMngload' %}">首页</a></li>
+        <li><a href="{% url 'stuMng:class_load' %}">班级</a></li>
+        <li><a href="{% url 'stuMng:stu_load' %}">学生</a></li>
+        <li><a href="#">成绩</a></li>
+        <li><a href="{% url 'stuMng:login' %}">退出</a></li>
+    </ul>
+</header>
+<div class="context">
+    <div id="choose">
+        <ul>
+            <li style="line-height:5"><a href="{% url 'stuMng:check_stu' %}">学生管理</a></li>
+            <li><a href="{% url 'stuMng:add_stu' %}">添加学生</a></li>
+        </ul>
+        <div id="forms">
+            <nav>学生管理
+            <form action="{% url 'stuMng:search_stu' %}" method="post" id="find">
+                     <input type="text" name="stuname"/>
+                     <button type="submit" id="buttons">搜索</button>
+                </form>
+            </nav>
+            <div id="imfor">
+             <table border="1" class="mations" width="790">
+             <thead>
+                                <tr>
+                                    <th>排序</th>
+                                    <th>学号</th>
+                                    <th>姓名</th>
+                                    <th>性别</th>
+                                    <th>班级编号</th>
+                                    <th>电话</th>
+                                    <th>操作</th>
+                                </tr>
+             </thead>
+                        <tbody>
+                            {% for stu_list in stu_list %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ stu_list.id }}</td>
+                                <td>{{ stu_list.name }}</td>
+                                <td>{{ stu_list.sex }}</td>
+                                <td>{{ stu_list.class_id }}</td>
+                                <td>{{ stu_list.tel }}</td>
+                                <td>
+                                    <a href="/stuMng/edit_stu/?id={{ stu_list.id }}">修改</a>
+                                    <a href="/stuMng/delete_stu/?id={{ stu_list.id }}">删除</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <ul>
+        <li>制作人：linwenxin</li>
+        <li>| 联系方式：1376678161@qq.com</li>
+    </ul>
+</footer>
+</body>
+</html>
