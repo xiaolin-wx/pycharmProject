@@ -72,5 +72,62 @@ class Face_Register:
 
             if kk == ord("n"):
                 self.existing_faces_cnt += 1
+                current_face_dir = self.path_photos_from_camera + "person_" +str(self.existing_faces_cnt)
+                os.makedirs(current_face_dir)
+                logging.info("\n%=40s %s","新建的人脸文件", current_face_dir)
+
+                self.ss_cnt = 0
+                self.press_n_flag = 1
+
+            if len(faces) != 0:
+                for k, d in enumerate(faces):
+                    height = (d.bottom() - d.top())
+                    width = (d.right() - d.left())
+                    hh = int(height/2)
+                    ww = int(width/2)
 
 
+                    color_rectangle = (255, 255, 255)
+                    save_flag = 1
+
+                    cv2.rectangle(img_rd,
+                                  tuple([d.left() - ww, d.top() - hh]),
+                                  tuple(d.right() + ww, d.bottom + hh),
+                                  color_rectangle, 2)
+
+                    img_blank = np.zeros((int(height*2), width*2, 3), np.uint8)
+
+                    if save_flag:
+                        if kk == ord("s"):
+                            if self.press_n_flag:
+                                self.ss_cnt = 1
+                                for ii in range(height*2):
+                                    for jj in range(width*2):
+                                        img_blank[ii][jj] = img_rd[d.top() - hh + ii][d.left() - ww + jj]
+                                cv2.imwrite(current_face_dir + "/img_face_" + str(self.ss_cnt) + ".jpg", img_blank)
+                                logging.info("%-40s %s/img_face_%s.jpg", "写入本地 / Save into:", str(current_face_dir), str(self.ss_cnt))
+                            else:
+                                logging.warning("请先按 'N' 来建文件夹，按'S'/Please press 'N' and press 'S'")
+
+            self.current_frame_faces_cnt = len(faces)
+            self.draw_note(img_rd)
+
+            if kk == ord('q'):
+                break
+            self.update_fps()
+            cv2.namedWindow("camera", 1)
+            cv2.imshow("camera", img_rd)
+
+    def run(self):
+        cap = cv2.VideoCapture(0)
+        self.process(cap)
+        cap.release()
+        cv2.destroyAllWindows()
+
+    def main(self):
+        logging.basicConfig(level=logging.INFO)
+        Face_Register_con = Face_Register()
+        Face_Register_con.run()
+
+    if __name__ == '__main__':
+        main()
